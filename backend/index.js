@@ -13,16 +13,11 @@ app.use(bodyParser.json());
 app.use("/api/users", userRouter);
 app.use("/api/organizations", organizationRouter);
 
-mongoose.connect('mongodb://localhost:27017/organizations', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
+const uri="mongodb+srv://sanikakadam604:m1x938GkYevz2d9i@cluster0.jhf3gzj.mongodb.net/meetapp?retryWrites=true&w=majority&appName=Cluster0"
+mongoose.connect(uri)
+        .then(()=>{
+          console.log("Connected to MongoDB database")
+        })
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

@@ -49,7 +49,13 @@ organizationRouter.post('/', async (req, res) => {
       code = generateCode();
     } while (await Organization.findOne({ code }));
 
-    const newOrganization = new Organization({ name, code, adminEmail, members: [adminEmail] });
+    const newOrganization = new Organization({ name, code, admins: {
+      email: adminEmail,
+    }, members: [
+      {
+        email: adminEmail,
+      }
+    ] });
 
     await newOrganization.save();
     res.status(201).json(newOrganization);
@@ -87,11 +93,12 @@ organizationRouter.post('/join', async (req, res) => {
 organizationRouter.get('/user/:userId', async (req, res) => {
   const userId = req.params.userId;
   try {
-    const organizations = await Organization.find({ members: userId });
-
+    console.log(`Searching organizations for user: ${userId}`);
+    const organizations = await Organization.find({ 'members.email': userId });
+    console.log('Organizations found:', organizations);
     res.json(organizations);
-    console.log(res)
   } catch (error) {
+    console.error('Error fetching organizations:', error);
     res.status(500).send(error);
   }
 });
