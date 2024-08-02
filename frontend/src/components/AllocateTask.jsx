@@ -1,4 +1,3 @@
-// src/pages/AllocateTask.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -69,35 +68,51 @@ const AllocateTask = () => {
   };
 
   return (
-    <div>
-      <h1>Allocate Task for {name}</h1>
-      <input
-        type="text"
-        name="description"
-        placeholder="Task Description"
-        value={task.description}
-        onChange={handleTaskChange}
-      />
-      <input
-        type="date"
-        name="dueDate"
-        value={task.dueDate}
-        onChange={handleTaskChange}
-      />
-      <input
-        type="time"
-        name="allocatedTime"
-        value={task.allocatedTime}
-        onChange={handleTaskChange}
-      />
-      <select multiple name="assignedTo" value={task.assignedTo} onChange={handleAssignedToChange}>
-        {members.map((member) => (
-          <option key={member.email} value={member.email}>
-            {member.name} ({member.email})
-          </option>
-        ))}
-      </select>
-      <button onClick={handleAddTask}>Add Task</button>
+    <div className="min-h-screen flex items-center justify-center bg-blue-50">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-2xl font-bold text-blue-600 mb-6">Allocate Task for {name}</h1>
+        <input
+          type="text"
+          name="description"
+          placeholder="Task Description"
+          value={task.description}
+          onChange={handleTaskChange}
+          className="w-full p-3 border border-blue-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        />
+        <input
+          type="date"
+          name="dueDate"
+          value={task.dueDate}
+          onChange={handleTaskChange}
+          className="w-full p-3 border border-blue-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        />
+        <input
+          type="time"
+          name="allocatedTime"
+          value={task.allocatedTime}
+          onChange={handleTaskChange}
+          className="w-full p-3 border border-blue-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        />
+        <select
+          multiple
+          name="assignedTo"
+          value={task.assignedTo}
+          onChange={handleAssignedToChange}
+          className="w-full p-3 border border-blue-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        >
+          {members.map((member) => (
+            <option key={member} value={member}>
+              {member}
+            </option>
+          ))}
+        </select>
+        <button
+          onClick={handleAddTask}
+          className="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition duration-300"
+        >
+          Add Task
+        </button>
+      </div>
     </div>
   );
 };

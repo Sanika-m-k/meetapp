@@ -9,6 +9,8 @@ import supabase from './supabaseClient';
 import AllocateTask from './components/AllocateTask';
 import ViewTasks from './components/ViewTasks';
 import MyOrganizations from './components/MyOrganizations';
+import Organization from './pages/Organization';
+import  Meet  from './pages/Meet';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,9 +32,8 @@ function App() {
           <Route path="/" element={user ? <Home /> : <Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/my-organizations" element={<MyOrganizations />} />
-          <Route path="/organization/:name/allocate-task" element={<AllocateTask />} />
-          <Route path="/organization/:name/tasks" element={<ViewTasks />} />
+          <Route path="/org/:code" element={<Organization />} />
+          <Route path='/meet/call_id' element={<Meet/>}/>
         </Routes>
       </div>
     </Router>

@@ -1,4 +1,3 @@
-// src/pages/ViewTasks.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -21,15 +20,17 @@ const ViewTasks = () => {
   }, [name]);
 
   return (
-    <div>
-      <h1>Tasks for {name}</h1>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task._id}>
-            {task.description} - Due: {task.dueDate} - Allocated Time: {task.allocatedTime}
-          </li>
-        ))}
-      </ul>
+    <div className="flex justify-center items-center h-screen bg-blue-200">
+      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h1 className="text-2xl font-bold mb-4">Tasks for {name}</h1>
+        <ul>
+          {tasks.map((task) => (
+            <li key={task._id} className="text-sm mb-2">
+              <span className="font-bold">{task.description}</span> - Due: {task.dueDate} - Allocated Time: {task.allocatedTime}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

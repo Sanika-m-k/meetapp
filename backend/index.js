@@ -1,24 +1,37 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const http = require('http');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const userRouter = require("./src/user");
 const organizationRouter = require("./src/organization");
+const {chatsRouter} = require('./src/chats');
+const meetRouter = require('./src/meet')
+const dotenv= require('dotenv')
 
 const app = express();
 const PORT = 8080;
+const server = http.createServer(app);
 
-app.use(cors());
-app.use(bodyParser.json());
+dotenv.config()
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Frontend origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+}));app.use(bodyParser.json());
 app.use("/api/users", userRouter);
 app.use("/api/organizations", organizationRouter);
+app.use("/api/chats", chatsRouter);
+app.use("/api/meet", meetRouter);
 
-const uri="mongodb+srv://sanikakadam604:m1x938GkYevz2d9i@cluster0.jhf3gzj.mongodb.net/meetapp?retryWrites=true&w=majority&appName=Cluster0"
+const uri=process.env.MONGODB_URI
+
 mongoose.connect(uri)
         .then(()=>{
           console.log("Connected to MongoDB database")
         })
-
-app.listen(PORT, () => {
+require('./src/socket')(server);
+server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
