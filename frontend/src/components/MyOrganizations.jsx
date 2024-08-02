@@ -25,7 +25,7 @@ const MyOrganizations = () => {
     const fetchOrganizations = async () => {
       try {
         if (user) {
-          const response = await axios.get(`http://localhost:8080/api/organizations/user/${user.email}`);
+          const response = await axios.get(`https://meetapp-backend-1nm8.onrender.com/api/organizations/user/${user.email}`);
           setOrganizations(response.data);
         }
       } catch (error) {

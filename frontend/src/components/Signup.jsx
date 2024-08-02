@@ -26,7 +26,7 @@ const Signup = () => {
 
   const saveUser = async (firstName, lastName, email, password) => {
     try {
-      const response = await fetch('http://localhost:8080/api/users', {
+      const response = await fetch('https://meetapp-backend-1nm8.onrender.com/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

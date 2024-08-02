@@ -28,7 +28,7 @@ const AddOrganization = () => {
     try {
       setAdminEmail(user.email);
       console.log(user.email);
-      const response = await axios.post('http://localhost:8080/api/organizations', {
+      const response = await axios.post('https://meetapp-backend-1nm8.onrender.com/api/organizations', {
         name: organizationName,
         adminEmail: user.email,
       });

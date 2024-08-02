@@ -38,7 +38,7 @@ const Meet = () => {
         try {
           const id= user.email.slice(0,8)
           console.log(id)
-          const response = await axios.get(`http://localhost:8080/api/meet/user/${id}`);
+          const response = await axios.get(`https://meetapp-backend-1nm8.onrender.com/api/meet/user/${id}`);
           const data = await response.json();
 
           const { apiKey, token, userId } = data;

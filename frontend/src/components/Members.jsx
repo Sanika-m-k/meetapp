@@ -9,7 +9,7 @@ const Members = ({ organizationCode, onSelectMember }) => {
     const fetchMembers = async () => {
       try {
         console.log(organizationCode)
-        const response = await axios.get(`http://localhost:8080/api/organizations/members/${organizationCode.code}`);
+        const response = await axios.get(`https://meetapp-backend-1nm8.onrender.com/api/organizations/members/${organizationCode.code}`);
         console.log(response.data)
         setMembers(response.data);
       } catch (error) {

@@ -7,7 +7,7 @@ const JoinOrganization = () => {
 
   const handleJoinOrganization = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/api/organizations/join', {
+      const response = await axios.post('https://meetapp-backend-1nm8.onrender.com/api/organizations/join', {
         code,
         email,
       });

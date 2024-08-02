@@ -16,7 +16,7 @@ const server = http.createServer(app);
 dotenv.config()
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Frontend origin
+  origin: 'https://meetapp-lq15.onrender.com', // Frontend origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
 }));app.use(bodyParser.json());

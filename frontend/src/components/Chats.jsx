@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:8080');
+const socket = io('https://meetapp-backend-1nm8.onrender.com');
 
 function Chats({ organizationCode, email, selectedMember }) {
   const [message, setMessage] = useState('');
@@ -57,7 +57,7 @@ function Chats({ organizationCode, email, selectedMember }) {
   };
 
   const deleteMessage = (id) => {
-    fetch(`http://localhost:8080/api/chats/messages/${id}`, {
+    fetch(`https://meetapp-backend-1nm8.onrender.com/api/chats/messages/${id}`, {
       method: 'DELETE',
     }).then(() => {
       socket.emit('deleteMessage', id);

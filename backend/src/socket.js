@@ -4,7 +4,7 @@ const { Chat, chatsRouter } = require('./chats');
 module.exports = (server) => {
   const io = socketIo(server, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "https://meetapp-lq15.onrender.com",
       methods: ["GET", "POST", 'PUT', 'DELETE'],
       allowedHeaders: ["Content-Type"],
     }

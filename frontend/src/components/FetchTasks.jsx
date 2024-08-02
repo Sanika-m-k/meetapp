@@ -16,7 +16,7 @@ const FetchTasks = () => {
         const { data: session } = await supabase.auth.getSession();
         const user = session?.user;
         if (user) {
-          const response = await axios.get(`http://localhost:8080/api/organizations/code/${code}`);
+          const response = await axios.get(`https://meetapp-backend-1nm8.onrender.com/api/organizations/code/${code}`);
           setOrganization(response.data);
           setTasks(response.data.tasks);
           setIsAdmin(response.data.adminEmail === user.email);
@@ -31,7 +31,7 @@ const FetchTasks = () => {
 
   const handleAddTask = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/api/organizations/${organization._id}/tasks`, newTask);
+      const response = await axios.post(`https://meetapp-backend-1nm8.onrender.com/api/organizations/${organization._id}/tasks`, newTask);
       setTasks([...tasks, response.data]);
       setNewTask({ description: '', dueDate: '', allocatedTime: '' });
     } catch (error) {

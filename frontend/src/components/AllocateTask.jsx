@@ -26,7 +26,7 @@ const AllocateTask = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/organizations/${name}/members`);
+        const response = await axios.get(`https://meetapp-backend-1nm8.onrender.com/api/organizations/${name}/members`);
         console.log('Fetched members:', response.data);
         setMembers(response.data);
       } catch (error) {
@@ -43,7 +43,7 @@ const AllocateTask = () => {
         ...task,
         allocatedBy: user.email,
       };
-      const response = await axios.post(`http://localhost:8080/api/organizations/${name}/tasks`, taskData);
+      const response = await axios.post(`https://meetapp-backend-1nm8.onrender.com/api/organizations/${name}/tasks`, taskData);
       setTask({ description: '', dueDate: '', allocatedTime: '', assignedTo: [] });
       alert('Task added successfully');
     } catch (error) {
